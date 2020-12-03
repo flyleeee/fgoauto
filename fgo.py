@@ -71,7 +71,6 @@ def rmove(x1, y1, x2, y2):
     y = random.randint(y1, y2)
     p.moveTo(x, y)
 
-
 def findce(image):
     #寻找礼装
     findfail = r'.\images\findfail.png'
@@ -84,10 +83,10 @@ def findce(image):
     rmove(x1=343, y1=363, x2=1449, y2=481)
     start1 = time.perf_counter()
     while p.locateCenterOnScreen(image, confidence=0.9) is None:
-        time.sleep(random.uniform(0.5, 0.9))
+        time.sleep(random.uniform(0.1, 0.2))
         p.scroll(-1)
 
-        if int(time.perf_counter()) - start1 > 5:
+        if int(time.perf_counter()) - start1 > 8:
             aclicks(x1=1180, y1=237, x2=1224, y2=276)
             if p.locateCenterOnScreen(findfail2, confidence=0.9) is not None:
                 aclicks(x1=921, y1=734, x2=988, y2=753)
@@ -98,7 +97,7 @@ def findce(image):
             time.sleep(random.uniform(1, 2))
             start1 = time.perf_counter()
     x, y = p.locateCenterOnScreen(image, confidence=0.9)
-    p.click(x, y - 80)
+    p.click(x, y - random.uniform(75, 85))
 
 
 def aoe(x):
