@@ -19,7 +19,6 @@ def findwindow(x):
 
 
 def find_and_click(image):
-    #寻找并点击这张图片的位置
     x, y = p.locateCenterOnScreen(image, confidence=0.9)
     p.click(x, y)
 
@@ -70,6 +69,7 @@ def rmove(x1, y1, x2, y2):
     x = random.randint(x1, x2)
     y = random.randint(y1, y2)
     p.moveTo(x, y)
+
 
 def findce(image):
     #寻找礼装
@@ -181,8 +181,9 @@ def gan(self):
     findwindow(x)  #如果你并不是在MuMu模拟器上运行fgo，请将这一行删掉，并适当提高下一行的sleep时间
 
     time.sleep(1)
+    startfrom_icon(qp)
     for x in range(200):
-        startfrom_icon(qp)
+        
 
         if ap < cost:
             rclick(x1=725, y1=473, x2=1230, y2=490)  # 吃苹果
@@ -196,8 +197,9 @@ def gan(self):
         time.sleep(random.uniform(3, 3.5))
         if x == 0:
             selectteam(team9)
+            find_and_click(startmission)
 
-        find_and_click(startmission)
+        
 
         time.sleep(10)
         # ================第一面==============
@@ -249,8 +251,10 @@ def gan(self):
         time.sleep(random.uniform(2, 2.5))
         if p.locateCenterOnScreen(add, confidence=0.9) is not None:
             aclicks(x1=477, y1=784, x2=732, y2=827)
-        time.sleep(random.uniform(8, 8.5))
-
+        time.sleep(random.uniform(2, 2.5))
+        find_and_click(continueToFight)
+        time.sleep(random.uniform(2, 2.5))
+        
         ap -= cost
         if time.perf_counter() - start > 300:
             ap += 1
@@ -269,3 +273,4 @@ if __name__ == '__main__':
     widgets.show()
 
     sys.exit(app.exec_())
+
