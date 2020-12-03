@@ -10,6 +10,8 @@ import sys
 
 
 def findwindow(x):
+    #这个是可以偷懒几秒的函数，就是在你运行程序以后直接切到fgo的窗口，但是需要提前知道窗口的句柄
+    #当时只是为了好玩而实现，可以在开头多sleep几秒并删掉这个函数
     shell = win32com.client.Dispatch("WScript.Shell")
     shell.SendKeys('%')
     win32gui.ShowWindow(x, win32con.SW_SHOWNORMAL)
@@ -17,6 +19,7 @@ def findwindow(x):
 
 
 def find_and_click(image):
+    #寻找并点击这张图片的位置
     x, y = p.locateCenterOnScreen(image, confidence=0.9)
     p.click(x, y)
 
@@ -108,6 +111,7 @@ def aoe(x):
 
 
 def attackcard(x):
+    #选择第二张或第三张指令卡，反正都靠光炮，所以这都是乱选的
     if x == 1:
         aclicks(x1=320, y1=596, x2=432, y2=745)  # 一号a
     elif x == 2:
@@ -139,11 +143,13 @@ def skill(x, y):
 
 
 def selectteam(image):
+    #选择是第几个队伍出战
     while p.locateCenterOnScreen(image, confidence=0.9) is None:
         aclicks(x1=1654, y1=535, x2=1654, y2=535)
 
 
 def startfrom_icon(icon):
+    #选择点击开始那个关卡的图片
     if p.locateCenterOnScreen(icon, confidence=0.95) is None:
         aclicks(x1=1339, y1=837, x2=1603, y2=894)
         time.sleep(1)
